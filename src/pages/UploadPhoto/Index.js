@@ -14,8 +14,8 @@ const UploadPhoto = () => {
             <Image source={ILNullPhoto} style={styles.avatar} />
             <IconAddPhoto style={styles.addPhoto} />
           </View>
-          <Text style={styles.name}>Waliyul Ardy</Text>
-          <Text style={styles.profession}>Software Developer</Text>
+          <Text style={styles.name}>Shayna Melinda</Text>
+          <Text style={styles.profession}>Product Designer</Text>
         </View>
         <View>
           <Button title="Upload and Continue" />
