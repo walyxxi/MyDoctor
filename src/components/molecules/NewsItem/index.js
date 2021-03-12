@@ -22,14 +22,16 @@ export default NewsItem;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 28,
-    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
   },
   title: {
     fontSize: 16,
     fontFamily: fonts.primary[600],
     color: colors.text.primary,
+    maxWidth: '90%',
   },
   content: {
     flex: 1,
