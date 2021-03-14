@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {DummyDokter1, DummyDokter2, DummyDokter3} from '../../assets';
-import ListDoctor from '../../components/molecules/ListDoctor';
+import List from '../../components/molecules/List';
 import {colors, fonts} from '../../utils';
 
-const Messages = () => {
+const Messages = ({navigation}) => {
   const [doctors, setDoctors] = useState([
     {
       id: 1,
@@ -30,7 +30,11 @@ const Messages = () => {
       <View style={styles.content}>
         <Text style={styles.title}>Messages</Text>
         {doctors.map((doctor, idx) => (
-          <ListDoctor key={idx} {...doctor} />
+          <List
+            key={idx}
+            {...doctor}
+            onPress={() => navigation.navigate('Chatting')}
+          />
         ))}
       </View>
     </View>

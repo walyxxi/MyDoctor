@@ -1,11 +1,11 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {DummyDokter1, IconStart} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-const RatedDoctor = () => {
+const RatedDoctor = ({onPress}) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image style={styles.avatar} source={DummyDokter1} />
       <View style={styles.profile}>
         <Text style={styles.name}>Alexa Rachel</Text>
@@ -18,7 +18,7 @@ const RatedDoctor = () => {
         <IconStart />
         <IconStart />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

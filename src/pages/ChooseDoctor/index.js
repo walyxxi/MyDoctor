@@ -7,7 +7,7 @@ import {
   DummyDokter7,
   DummyDokter8,
 } from '../../assets';
-import {Header, ListDoctor} from '../../components';
+import {Header, List} from '../../components';
 
 const ChooseDoctor = ({navigation}) => {
   const [doctors, setDoctors] = useState([
@@ -51,7 +51,7 @@ const ChooseDoctor = ({navigation}) => {
         type="dark"
       />
       {doctors.map((doctor, idx) => (
-        <ListDoctor
+        <List
           key={idx}
           {...doctor}
           type="next"
