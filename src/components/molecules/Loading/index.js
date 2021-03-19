@@ -1,11 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {colors} from '../../../utils';
+import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
+import {colors, fonts} from '../../../utils';
 
 const Loading = () => {
   return (
     <View style={styles.wrapper}>
-      <Text>Loading...</Text>
+      <ActivityIndicator size="large" color={colors.primary} />
+      <Text style={styles.text}>Loading...</Text>
     </View>
   );
 };
@@ -21,5 +22,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.loadingBackground,
     width: '100%',
     height: '100%',
+  },
+  text: {
+    fontSize: 18,
+    color: colors.primary,
+    fontFamily: fonts.primary[600],
+    marginTop: 16,
   },
 });

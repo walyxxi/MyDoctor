@@ -5,8 +5,9 @@ export const useForm = (initialValues) => {
 
   return [
     values,
-    (key, value) => {
-      return setValues({...values, [key]: value});
-    },
+    (key, value) =>
+      key === 'reset'
+        ? setValues(initialValues)
+        : setValues({...values, [key]: value}),
   ];
 };

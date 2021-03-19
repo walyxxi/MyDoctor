@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Gap, Header, Input, Loading} from '../../components';
-import {colors, useForm} from '../../utils';
+import {colors, storeData, useForm} from '../../utils';
 import {Fire} from '../../config';
+import {showMessage} from 'react-native-flash-message';
 
 const Register = ({navigation}) => {
   const [form, setForm] = useForm({
@@ -12,19 +13,33 @@ const Register = ({navigation}) => {
     password: '',
   });
 
+  const [loading, setLoading] = useState(false);
+
   const onContinue = () => {
-    console.log(form);
+    setLoading(true);
     Fire.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
       .then((success) => {
-        console.log('Register success: ', success);
+        setLoading(false);
+        setForm('reset');
+        const data = {
+          uid: success.user.uid,
+          fullName: form.fullName,
+          profession: form.profession,
+          email: form.email,
+        };
+        Fire.database().ref(`users/${success.user.uid}/`).set(data);
+        storeData('user', data);
+        navigation.navigate('UploadPhoto', data);
       })
       .catch((error) => {
-        // var errorCode = error.code;
         const errorMessage = error.message;
-        console.log('Register failed: ', errorMessage);
+        showMessage({
+          message: errorMessage,
+          type: 'danger',
+        });
+        setLoading(false);
       });
-    // navigation.navigate('UploadPhoto')
   };
 
   return (
@@ -62,7 +77,7 @@ const Register = ({navigation}) => {
           </View>
         </ScrollView>
       </View>
-      <Loading />
+      {loading && <Loading />}
     </>
   );
 };
