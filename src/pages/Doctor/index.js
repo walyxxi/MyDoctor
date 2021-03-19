@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {JSONCategoryDoctor} from '../../assets';
+import {ILNullPhoto, JSONCategoryDoctor} from '../../assets';
 import {Gap} from '../../components/atoms';
 import {
   DoctorCategory,

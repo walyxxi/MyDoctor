@@ -6,6 +6,7 @@ export const storeData = async (key, value) => {
     await AsyncStorage.setItem(key, jsonValue);
   } catch (e) {
     // saving error
+    console.log('AsyncStorage store Error');
   }
 };
 
@@ -13,9 +14,11 @@ export const getData = async (key) => {
   try {
     const value = await AsyncStorage.getItem(key);
     if (value !== null) {
-      return JSON.parse(value);
+      const data = JSON.parse(value);
+      return data;
     }
   } catch (e) {
     // error reading value
+    console.log('AsyncStorage get Error');
   }
 };

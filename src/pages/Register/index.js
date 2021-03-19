@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import {Button, Gap, Header, Input, Loading} from '../../components';
-import {colors, storeData, useForm} from '../../utils';
-import {Fire} from '../../config';
 import {showMessage} from 'react-native-flash-message';
+import {Button, Gap, Header, Input, Loading} from '../../components';
+import {Fire} from '../../config';
+import {colors, useForm} from '../../utils';
 
 const Register = ({navigation}) => {
   const [form, setForm] = useForm({
@@ -29,7 +29,6 @@ const Register = ({navigation}) => {
           email: form.email,
         };
         Fire.database().ref(`users/${success.user.uid}/`).set(data);
-        storeData('user', data);
         navigation.navigate('UploadPhoto', data);
       })
       .catch((error) => {

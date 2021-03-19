@@ -3,7 +3,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useState} from 'react/cjs/react.development';
 import {IconAddPhoto, IconRemovePhoto, ILNullPhoto} from '../../assets';
 import {Button, Gap, Header, Link} from '../../components';
-import {colors, fonts} from '../../utils';
+import {colors, fonts, storeData} from '../../utils';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {showMessage} from 'react-native-flash-message';
 import {Fire} from '../../config';
@@ -16,7 +16,7 @@ const UploadPhoto = ({navigation, route}) => {
 
   const getImage = () => {
     launchImageLibrary(
-      {mediaType: 'photo', includeBase64: true},
+      {mediaType: 'photo', includeBase64: true, maxWidth: 300, maxHeight: 300},
       (response) => {
         if (response.didCancel) {
           showMessage({
@@ -36,6 +36,9 @@ const UploadPhoto = ({navigation, route}) => {
 
   const uploadAndContinue = () => {
     Fire.database().ref(`users/${uid}/`).update({photo: photo4DB});
+    const data = route.params;
+    data.photo = photo4DB;
+    storeData('user', data);
     navigation.replace('MainApp');
   };
 
